@@ -7,8 +7,8 @@ packer {
   }
 }
 
-source "amazon-ebs" "nomad_server_ami" {
-  ami_name      = "nomad-server-{{timestamp}}"
+source "amazon-ebs" "nomad_server_client_ami" {
+  ami_name      = "nomad-server-client-${formatdate("YYYY-MM-DD-hh-mm-ss",timestamp())}"
   instance_type = "t2.micro"
   region        = "us-east-2"
   ssh_username  = "ec2-user"
@@ -22,14 +22,14 @@ source "amazon-ebs" "nomad_server_ami" {
   }
   tags = {
     "owner"       = "phil"
-    "environment" = "prod"
-    "Name"        = "nomad-server"
+    "environment" = "Dev"
+    "Name"        = "nomad-server-client"
   }
 }
 
 build {
   sources = [
-    "source.amazon-ebs.nomad_server_ami"
+    "source.amazon-ebs.nomad_server_client_ami"
   ]
 
   provisioner "shell" {

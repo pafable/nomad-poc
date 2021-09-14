@@ -1,5 +1,5 @@
 ---
-- name: Configuring EC2
+- name: Configuring Nomad Server and Client
   hosts: localhost
   connection: local
   become: true
@@ -38,7 +38,7 @@
         name: nomad
         state: latest
 
-    - name: Copying files from /tmp/nomad-configs to /opt/nomad-configs
+    - name: Copying files from /tmp/nomad-configs/ to /etc/nomad.d/
       copy:
         src: /tmp/nomad-configs
         dest: /opt

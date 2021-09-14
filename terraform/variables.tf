@@ -19,7 +19,7 @@ variable "tags" {
 variable "num" {
   type = map(string)
   default = {
-    "Dev"  = 3
-    "Prod" = 5
+    "Dev"  = 1
+    "Prod" = 3
   }
 }

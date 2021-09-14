@@ -1,4 +1,4 @@
-data "aws_ami" "amzlin2" {
+data "aws_ami" "nomad_server" {
   most_recent = true
 
   filter {

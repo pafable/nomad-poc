@@ -1,7 +1,7 @@
-resource "aws_instance" "nomad_instance" {
+resource "aws_instance" "nomad_client" {
   count                       = var.num[terraform.workspace]
   key_name                    = var.key_name
-  ami                         = data.aws_ami.amzlin2.id
+  ami                         = data.aws_ami.nomad_server.id
   associate_public_ip_address = true
   instance_type               = "t2.micro"
   vpc_security_group_ids      = [var.sg]
@@ -10,6 +10,6 @@ resource "aws_instance" "nomad_instance" {
   }))
 }
 
-output "aws_instances" {
-  value = aws_instance.nomad_instance.*.public_dns
+output "nomad_clients" {
+  value = aws_instance.nomad_client.*.public_dns
 }
