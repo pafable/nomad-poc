@@ -8,7 +8,7 @@ packer {
 }
 
 source "amazon-ebs" "nomad_server_ami" {
-  ami_name      = "nomad-server"
+  ami_name      = "nomad-server-{{timestamp}}"
   instance_type = "t2.micro"
   region        = "us-east-2"
   ssh_username  = "ec2-user"
@@ -23,7 +23,7 @@ source "amazon-ebs" "nomad_server_ami" {
   tags = {
     "owner"       = "phil"
     "environment" = "prod"
-    "name"        = "nomad-server"
+    "Name"        = "nomad-server"
   }
 }
 
@@ -42,6 +42,6 @@ build {
   }
 
   provisioner "ansible-local" {
-    playbook_file = "./000-nomad.yml"
+    playbook_file = "./ansible-playbooks/nomad-server.yml"
   }
-
+}
