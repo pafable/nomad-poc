@@ -38,8 +38,14 @@
         name: nomad
         state: latest
 
-    - name: Creating nomad config directory
-      file:
-        path: /opt/nomad
-        state: directory
-        mode: "u=rw,g=rw,o=rw"
+    # - name: Creating nomad config directory
+    #   file:
+    #     path: /opt/nomad-configs
+    #     state: directory
+    #     mode: "u=rw,g=rw,o=rw"
+
+    - name: Copying files from /tmp/nomad-configs to /opt/nomad-configs
+      copy:
+        src: /tmp/nomad-configs
+        dest: /opt/nomad-configs
+        mode: u=rw,g=rw,o=rw

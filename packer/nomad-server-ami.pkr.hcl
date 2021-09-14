@@ -33,15 +33,15 @@ build {
   ]
 
   provisioner "shell" {
-    script = "init.sh"
-  }
-
-  provisioner "ansible-local" {
-    playbook_file = "000-nomad.yml"
+    script = "./init.sh"
   }
 
   provisioner "file" {
-    source      = "nomad-configs"
-    destination = "/opt/nomad"
+    source      = "./nomad-configs"
+    destination = "/tmp"
   }
-}
+
+  provisioner "ansible-local" {
+    playbook_file = "./000-nomad.yml"
+  }
+
