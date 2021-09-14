@@ -7,8 +7,8 @@ packer {
   }
 }
 
-source "amazon-ebs" "nomad_ami" {
-  ami_name      = "nomad"
+source "amazon-ebs" "nomad_server_ami" {
+  ami_name      = "nomad-server"
   instance_type = "t2.micro"
   region        = "us-east-2"
   ssh_username  = "ec2-user"
@@ -20,29 +20,28 @@ source "amazon-ebs" "nomad_ami" {
       virtualization-type = "hvm"
     }
   }
-  user_data = <<-EOF
-    #!/bin/bash
-    sudo yum update -y && sudo yum upgrade -y
-    sudo amazon-linux-extras install epel -y
-    sudo yum install ansible -y
-  EOF
   tags = {
     "owner"       = "phil"
     "environment" = "prod"
+    "name"        = "nomad-server"
   }
 }
 
 build {
   sources = [
-    "source.amazon-ebs.nomad_ami"
+    "source.amazon-ebs.nomad_server_ami"
   ]
 
+  provisioner "shell" {
+    script = "init.sh"
+  }
+
   provisioner "ansible-local" {
-    playbook_file = "./000-nomad.yml"
+    playbook_file = "000-nomad.yml"
   }
 
   provisioner "file" {
     source      = "nomad-configs"
-    destination = "/tmp/nomad-configs"
+    destination = "/opt/nomad"
   }
 }

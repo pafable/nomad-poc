@@ -3,39 +3,43 @@
   hosts: localhost
   connection: local
   become: true
-    
-  tasks: 
-   - name: Upgrading packages
-     yum:
-       name: "*"
-       state: latest
-  
-   - name: Installing net-tools
-     yum:
-       name: net-tools
-       state: latest
-       update_cache: yes  
 
-   - name: Installing vim
-     yum:
-       name: vim
-       state: latest
-       update_cache: yes  
+  tasks:
+    - name: Upgrading packages
+      yum:
+        name: "*"
+        state: latest
 
-   - name: Installing tmux
-     yum:
-       name: tmux
-       state: latest
-       update_cache: yes
-   
-   - name: Installing yum-utils
-     yum:
-       name: yum-utils
-       state: latest
-       update_cache: yes
-  
-   - name: Adding Nomad repo 
-     yum_repository:
-       name: nomad
-       description: Hashicorp Nomad repo 
-       baseurl: https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo 
+    - name: Installing net-tools
+      yum:
+        name: net-tools
+        state: latest
+
+    - name: Installing vim
+      yum:
+        name: vim
+        state: latest
+
+    - name: Installing tmux
+      yum:
+        name: tmux
+        state: latest
+
+    - name: Installing yum-utils
+      yum:
+        name: yum-utils
+        state: latest
+
+    - name: Adding nomad repo
+      shell: yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
+
+    - name: Installing nomad
+      yum:
+        name: nomad
+        state: latest
+
+    - name: Creating nomad config directory
+      file:
+        path: /opt/nomad
+        state: directory
+        mode: "u=rw,g=rw,o=rw"
