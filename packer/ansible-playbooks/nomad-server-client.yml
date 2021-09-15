@@ -37,9 +37,3 @@
       yum:
         name: nomad
         state: latest
-
-    - name: Copying files from /tmp/nomad-configs/ to /etc/nomad.d/
-      copy:
-        src: /tmp/nomad-configs
-        dest: /opt
-        mode: u=rw,g=rw,o=rw

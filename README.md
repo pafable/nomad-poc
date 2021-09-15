@@ -1,20 +1,33 @@
 # Build a Nomad POC Environment
 
 ## Create AMI for Nomad Server and Client
-Server
+**Initialization**
 ```
-packer build nomad-server-ami.pkr.hcl
+packer init .
+```
+**Server**
+```
+packer build .
 ```
 
 ## Provision Nomad Server and Client Clusters
-Server
+**Server**
 ```
-terraform plan -var='key_name=<YOUR-KEY> -var='sg=<SECURITY-GROUP> -out plan'
+terraform plan -var-file=vars.tfvars -out plan'
 ```
 ```
 terraform apply plan
 ```
 
-## TODO
+**Destroying Environment**
+```
+terraform plan -var-file=vars.tfvars -out plan -destroy
+```
+
+```
+terraform apply plan
+```
+### TODO
 - Create AMI for client
 - Create Terraform for client
+- Install Docker

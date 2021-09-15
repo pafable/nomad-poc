@@ -1,9 +1,9 @@
-data "aws_ami" "nomad_server" {
+data "aws_ami" "nomad_server_client" {
   most_recent = true
 
   filter {
     name   = "name"
-    values = ["amzn2-ami-hvm-2.0.*-x86_64-gp2"]
+    values = ["nomad-server-client-*"]
   }
 
   filter {
@@ -16,5 +16,5 @@ data "aws_ami" "nomad_server" {
     values = ["hvm"]
   }
 
-  owners = ["137112412989"]
+  owners = [var.owner_id]
 }

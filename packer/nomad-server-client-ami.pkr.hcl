@@ -8,7 +8,7 @@ packer {
 }
 
 source "amazon-ebs" "nomad_server_client_ami" {
-  ami_name      = "nomad-server-client-${formatdate("YYYY-MM-DD-hh-mm-ss",timestamp())}"
+  ami_name      = "nomad-server-client-${formatdate("YYYY-MM-DD-hh-mm-ss", timestamp())}"
   instance_type = "t2.micro"
   region        = "us-east-2"
   ssh_username  = "ec2-user"
@@ -20,11 +20,7 @@ source "amazon-ebs" "nomad_server_client_ami" {
       virtualization-type = "hvm"
     }
   }
-  tags = {
-    "owner"       = "phil"
-    "environment" = "Dev"
-    "Name"        = "nomad-server-client"
-  }
+  tags = var.tags
 }
 
 build {
@@ -42,6 +38,6 @@ build {
   }
 
   provisioner "ansible-local" {
-    playbook_file = "./ansible-playbooks/nomad-server.yml"
+    playbook_file = "./ansible-playbooks/nomad-server-client.yml"
   }
 }

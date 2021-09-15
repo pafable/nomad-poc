@@ -1,0 +1,22 @@
+---
+- name: Initializing Nomad Client
+  hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+    - name: Upgrading packages
+      yum:
+        name: "*"
+        state: latest
+
+    - name: Overwrite a nomad client config file
+      copy:
+        src: "/tmp/nomad-configs/client.hcl"
+        dest: "/etc/nomad.d/nomad.hcl"
+
+    - name: Initializing nomad client
+      service:
+        name: nomad
+        enabled: yes
+        state: started
