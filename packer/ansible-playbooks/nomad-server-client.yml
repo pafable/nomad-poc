@@ -23,7 +23,7 @@
     - name: Installing tmux
       yum:
         name: tmux
-        state: latest
+        state: latest  
 
     - name: Installing yum-utils
       yum:
@@ -37,3 +37,12 @@
       yum:
         name: nomad
         state: latest
+    
+    - name: Installing docker
+      shell: amazon-linux-extras install docker
+
+    - name: Starting docker
+      service:
+        name: docker
+        enabled: yes
+        state: started

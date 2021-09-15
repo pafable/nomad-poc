@@ -1,7 +1,5 @@
 variable "key_name" {}
 
-variable "sg" {}
-
 variable "owner_id" {}
 
 variable "environment" {
