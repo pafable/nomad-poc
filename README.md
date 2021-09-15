@@ -59,6 +59,25 @@ terraform apply plan
 **Accessing Nomad UI**
 To access the Nomad UI, navigate to on your web browser: `http://<EC2_Public_IPv4_DNS>:4646`
 
+**Deploying a Job to the Cluster**
+Navigate to the nomad directory and run the following
+
+**Connect to cluster**
+
+```
+export NOMAD_ADDR=http://<NOMAD_SERVER_IP_ADDRESS:4646
+```
+
+**Deploy to cluster**
+
+```
+nomad job plan demo.nomad
+```
+
+```
+nomad job run demo.nomad
+```
+
 **Destroying Environment**
 
 ```
