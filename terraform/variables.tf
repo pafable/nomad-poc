@@ -11,10 +11,6 @@ variable "environment" {
 
 variable "tags" {
   type = map(string)
-  default = {
-    "Owner" : "phil",
-    "Email" : "my-email@test.com"
-  }
 }
 
 variable "num" {
