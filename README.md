@@ -1,5 +1,7 @@
 # Build a Nomad POC Environment
 
+This project will create an AMI with nomad and docker installed.
+
 ## Create AMI for Nomad Server and Client
 
 Create a `vars.pkrvars.hcl` in the packer directory and add the following.
@@ -53,6 +55,9 @@ terraform plan -var-file='vars.tfvars' -out plan
 ```
 terraform apply plan
 ```
+
+**Accessing Nomad UI**
+To access the Nomad UI, navigate to on your web browser: `http://<EC2_Public_IPv4_DNS>:4646`
 
 **Destroying Environment**
 
