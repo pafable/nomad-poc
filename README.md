@@ -2,6 +2,11 @@
 
 This project will create an AMI with nomad and docker installed.
 
+The same AMI will be used for both client and server, however different config files will be applied.
+
+This project will create an AMI, provision ec2 instances to function as a nomad server and client.
+Finally it will deploy a demo nomad job to the cluster.
+
 ## Create AMI for Nomad Server and Client
 
 Create a `vars.pkrvars.hcl` in the packer directory and add the following.
