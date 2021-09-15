@@ -11,7 +11,19 @@ packer build .
 ```
 
 ## Provision Nomad Server and Client Clusters
-**Server**
+**Server and Client**
+
+Create a `vars.tfvars` file in the terraform directory and add the following.
+```
+owner_id = <YOUR_AWS_ID>
+key_name = <YOUR_SSH_KEY_NAME>
+sg       = <YOUR_SECURITY_GROUP>
+```
+
+**Initialization**
+```
+terraform init
+```
 ```
 terraform plan -var-file=vars.tfvars -out plan'
 ```

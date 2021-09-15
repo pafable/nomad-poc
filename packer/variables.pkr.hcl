@@ -3,6 +3,6 @@ variable "tags" {
   default = {
     "Owner" : "phil",
     "Name" : "nomad",
-    "Email": "my-email-test@123test.com"
+    "Email" : "my-email-test@123test.com"
   }
 }
