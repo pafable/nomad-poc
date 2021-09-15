@@ -7,8 +7,8 @@ Create a `vars.pkrvars.hcl` in the packer directory and add the following.
 ```
 tags = {
     "Owner" = "<YOUR_NAME>",
-    "Name" = "nomad",
-    "Email" = "<YOUR_EMAIL"
+    "Name" = "nomad-server-client",
+    "Email" = "<YOUR_EMAIL>"
   }
 ```
 
