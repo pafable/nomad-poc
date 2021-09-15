@@ -1,13 +1,13 @@
 log_level = "DEBUG"
 data_dir = "/opt/nomad/data"
-name = "nomad-02"
+name = 
 
 client {
   enabled = true
 
   server_join {
     retry_join = [
-      "<IP_ADDRESS OR URL>"
+      IP_ADDRESS_OR_URL
     ]
     retry_max = 3
     retry_interval = "15s"

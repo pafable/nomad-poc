@@ -15,6 +15,19 @@
         src: "/tmp/nomad-configs/client.hcl"
         dest: "/etc/nomad.d/nomad.hcl"
 
+    - name: Set client name
+      lineinfile:
+        path: "/etc/nomad.d/nomad.hcl"
+        regexp: "^name = "
+        line: 'name = "{{hostname}}"'
+        backup: yes
+
+    - name: Set Nomad server ip address or hostname
+      lineinfile:
+        path: "/etc/nomad.d/nomad.hcl"
+        regexp: "^      IP_ADDRESS_OR_URL"
+        line: "      {{ip}}"
+
     - name: Initializing nomad client
       service:
         name: nomad

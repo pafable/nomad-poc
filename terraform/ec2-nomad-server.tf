@@ -5,10 +5,10 @@ resource "aws_instance" "nomad_server" {
   associate_public_ip_address = true
   instance_type               = "t2.micro"
   vpc_security_group_ids      = [var.sg]
-  user_data = <<-EOF
-  sudo ansible-playbook /tmp/nomad-configs/nomad-server-init.yml 
+  user_data                   = <<-EOF
+  sudo ansible-playbook /tmp/nomad-configs/nomad-server-init.yml --extra-vars "hostname=$(hostname)"
   EOF
-  tags = merge(var.tags, tomap({"Environment" = var.environment}), tomap({"Name" = "nomad-server"}))
+  tags                        = merge(var.tags, tomap({ "Environment" = var.environment }), tomap({ "Name" = "nomad-server" }))
 }
 
 output "nomad_servers" {

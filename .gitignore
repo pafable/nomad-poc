@@ -3,3 +3,4 @@ plan
 *tfstate*
 *.lock.hcl
 *.tfvars
+test

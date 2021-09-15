@@ -9,11 +9,18 @@
       yum:
         name: "*"
         state: latest
-      
+
     - name: Overwrite a nomad server config file
       copy:
         src: "/tmp/nomad-configs/server.hcl"
         dest: "/etc/nomad.d/nomad.hcl"
+
+    - name: Set server name
+      lineinfile:
+        path: "/etc/nomad.d/nomad.hcl"
+        regexp: "^name = "
+        line: 'name = "{{hostname}}"'
+        backup: yes
 
     - name: Initializing nomad server
       service:
