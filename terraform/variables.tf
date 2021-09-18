@@ -1,5 +1,5 @@
 variable "key_name" {}
-
+variable "role" {}
 variable "owner_id" {}
 
 variable "environment" {

@@ -6,18 +6,20 @@ job "demo" {
         count = 1
 
         network {
-            port "http" {
+            mode = "none"
+            port "ghost" {
+                static = 80
                 to = 2368
-                static = 2368
             }
         }
 
         task "ghost" {
             driver = "docker"
+            kill_timeout = "30s"
 
             config {
                 image = "ghost:latest"
-                ports = ["http"]
+                ports = ["ghost"]
             }
 
             resources {

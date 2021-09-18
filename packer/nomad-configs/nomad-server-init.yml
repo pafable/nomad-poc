@@ -10,6 +10,9 @@
         name: "*"
         state: latest
 
+    - name: Updating SSM Parameter with server public hostname
+      shell: aws ssm put-parameter --name nomad-server --value {{public}} --overwrite --region us-east-2
+
     - name: Overwrite a nomad server config file
       copy:
         src: "/tmp/nomad-configs/server.hcl"

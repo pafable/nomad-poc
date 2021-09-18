@@ -7,6 +7,10 @@ The same AMI will be used for both client and server, however different config f
 This project will create an AMI, provision ec2 instances to function as a nomad server and client.
 Finally it will deploy a demo nomad job to the cluster.
 
+## Prep Work
+Create an System Manager Parameter Store entry in the region you are deploying to. This example uses us-east-2.
+Give the parameter the name `nomad-server`. Give it a value of `null`, this value will be changed automatically to the correct value during the terraform step.
+
 ## Create AMI for Nomad Server and Client
 
 Create a `vars.pkrvars.hcl` in the packer directory and add the following.
@@ -40,6 +44,7 @@ Create a `vars.tfvars` file in the terraform directory and add the following.
 ```
 owner_id = "<YOUR_AWS_ID>"
 key_name = "<YOUR_SSH_KEY_NAME>"
+role     = "<YOUR_INSTANCE_ROLE>"
 
 tags = {
   "Owner" : "<YOUR_NAME>",

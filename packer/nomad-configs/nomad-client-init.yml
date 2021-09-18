@@ -26,7 +26,7 @@
       lineinfile:
         path: "/etc/nomad.d/nomad.hcl"
         regexp: "^      IP_ADDRESS_OR_URL"
-        line: "      {{ip}}"
+        line: '      "{{server}}"'
 
     - name: Initializing nomad client
       service:

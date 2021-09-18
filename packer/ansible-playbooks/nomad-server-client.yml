@@ -25,6 +25,11 @@
         name: tmux
         state: latest  
 
+    - name: Installing jq
+      yum:
+        name: jq
+        state: latest 
+
     - name: Installing yum-utils
       yum:
         name: yum-utils
