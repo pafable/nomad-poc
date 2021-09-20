@@ -44,7 +44,6 @@ Create a `vars.tfvars` file in the terraform directory and add the following.
 ```
 owner_id = "<YOUR_AWS_ID>"
 key_name = "<YOUR_SSH_KEY_NAME>"
-role     = "<YOUR_INSTANCE_ROLE>"
 
 tags = {
   "Owner" : "<YOUR_NAME>",
@@ -77,7 +76,7 @@ Navigate to the nomad directory and run the following
 **Connect to cluster**
 
 ```
-export NOMAD_ADDR=http://<NOMAD_SERVER_IP_ADDRESS:4646
+export NOMAD_ADDR=http://<EC2_Public_IPv4_DNS>:4646
 ```
 
 **Deploy to cluster**
