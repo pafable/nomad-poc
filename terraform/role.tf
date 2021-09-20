@@ -1,10 +1,10 @@
 resource "aws_iam_instance_profile" "nomad_profile" {
-  name = "nomad-role"
+  name = "nomad-profile"
   role = aws_iam_role.nomad_role.name
 }
 
 resource "aws_iam_role" "nomad_role" {
-  name = "nomad_role"
+  name = "nomad-role"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -35,6 +35,7 @@ resource "aws_iam_role" "nomad_role" {
       ]
     })
   }
+  tags = merge(var.tags, tomap({ "Environment" = var.environment }), tomap({ "Name" = "nomad-role" }))
 }
 
 
