@@ -29,15 +29,15 @@ build {
   ]
 
   provisioner "shell" {
-    script = "./init.sh"
+    script = "./packer/init.sh"
   }
 
   provisioner "file" {
-    source      = "./nomad-configs"
+    source      = "./packer/nomad-configs"
     destination = "/tmp"
   }
 
   provisioner "ansible-local" {
-    playbook_file = "./ansible-playbooks/nomad-server-client.yml"
+    playbook_file = "./packer/ansible-playbooks/nomad-server-client.yml"
   }
 }

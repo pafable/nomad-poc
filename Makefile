@@ -1,13 +1,12 @@
 pk:
-	cd packer
-	packer init .
-	packer build -var-file='vars.pkrvars.hcl' .
-
-tfwrk:
-	terraform -chdir="./terraform" workspace new Dev
+	packer init ./packer
+	packer build -var-file='./packer/vars.pkrvars.hcl' ./packer
 
 tfinit:
 	terraform -chdir="./terraform" init
+
+tfwrk:
+	terraform -chdir="./terraform" workspace new Dev
 
 tfplan:
 	terraform -chdir="./terraform" plan -var-file=vars.tfvars -out plan
@@ -20,3 +19,10 @@ tfpland:
 
 tffmt:
 	terraform -chdir="./terraform" fmt
+
+main:
+	make pk
+	make tffmt
+	make tfinit
+	make tfplan
+	make tfapply
