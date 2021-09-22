@@ -8,7 +8,7 @@ resource "aws_instance" "nomad_server" {
   vpc_security_group_ids      = [aws_security_group.nomad_access.id]
   user_data                   = <<-EOF
     #!/bin/bash
-    sudo ansible-playbook /tmp/nomad-configs/nomad-server-init.yml --extra-vars "hostname=$(hostname) public=$(curl http://169.254.169.254/latest/meta-data/public-hostname)" > /tmp/ansible-init.log
+    sudo ansible-playbook /tmp/nomad-configs/nomad-server-init.yml --extra-vars public=$(curl http://169.254.169.254/latest/meta-data/public-hostname)" > /tmp/ansible-init.log
   EOF
   tags                        = merge(var.tags, tomap({ "Environment" = var.environment }), tomap({ "Name" = "nomad-server" }))
 }
