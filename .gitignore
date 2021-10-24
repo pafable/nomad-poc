@@ -5,3 +5,5 @@ plan
 *.tfvars
 *.pkrvars.hcl
 test
+.DS_Store
+.dccache
