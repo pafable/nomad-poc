@@ -22,7 +22,7 @@
       lineinfile:
         path: "/etc/nomad.d/nomad.hcl"
         regexp: "^name = "
-        line: 'name = "{{hostname}}"'
+        line: 'name = "{{public}}"'
         backup: yes
 
     - name: Initializing nomad server

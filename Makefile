@@ -26,3 +26,7 @@ main:
 	make tfinit
 	make tfplan
 	make tfapply
+
+des:
+	make tfpland
+	make tfapply
